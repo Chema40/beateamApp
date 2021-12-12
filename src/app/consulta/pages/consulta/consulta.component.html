@@ -1,0 +1,102 @@
+<div class="row">
+    <div class="col">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>PRODUCTO</th>
+                    <th></th>
+                    <th style="text-align: start; width: 1px">Q</th>
+                    <th style="text-align: center">Estado</th>
+                    <th style="text-align: center">Tipo</th>
+                    <th>Fecha</th>
+                    <th></th>
+                    <th>Cliente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let dato of datos | paginate: config">
+                    <td>
+                        <img [src]="dato.logo" class="small-logo">
+                        {{dato.referencia}}
+                    </td>
+                    <td style="text-align: end">    
+                        <div *ngIf="dato.observacion; else elseBlock">
+                                <span class="badge rounded-pill bg-primary" data-toggle="tooltip" 
+                                      data-placement="bottom" data-bs-trigger="hover" 
+                                      data-html="true"
+                                      title="Obs. linea: {{dato.observacion}}, Obs. pedido: , Pedido por: {{dato.usuario}}" >i</span>
+                                
+                        </div>
+                        <ng-template #elseBlock>
+                            <div  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-trigger="hover" 
+                                  data-bs-html="true" title="Obs. linea: {{dato.observacion}}, Obs. pedido: , Pedido por: {{dato.usuario}}">
+                                  <span class="badge rounded-pill bg-warning text-dark">!</span>
+                            </div>
+                        </ng-template>         
+                    </td>
+                    <td>
+                        x{{dato.cantidad}} 
+                    </td>
+                    <td style="text-align: center">
+                        <div [ngSwitch]="dato.estado">
+                            <td *ngSwitchCase="'Pendiente'" class="badge bg-dark text-center" style="text-align: center">
+                                {{dato.estado}}
+                            </td>
+                            <td *ngSwitchCase="'Recogiendo'" class="badge bg-primary" style="align-items:center;">
+                                {{dato.estado}}
+                            </td>
+                            <td *ngSwitchCase="'Recogida'" class="badge bg-secondary" style="align-items:center;">
+                                {{dato.estado}}
+                            </td>
+                            <td *ngSwitchCase="'Desconsolidando'" class="badge bg-success" style="align-items:center;">
+                                {{dato.estado}}
+                            </td>
+                            <td *ngSwitchCase="'Desconsolidada'" class="badge bg-danger" style="align-items:center;">
+                                {{dato.estado}}
+                            </td>
+                            <td *ngSwitchCase="'Entregada'" class="badge bg-warning" style="align-items:center;">
+                                {{dato.estado}}
+                            </td>
+                            <td *ngSwitchCase="'Incidencia'" class="badge bg-info" style="align-items:center;">
+                                {{dato.estado}}
+                            </td>
+                        </div>
+                        
+                    </td>
+                    <td class="align-middle text-center">
+                        <span [ngSwitch]="dato.tipo" >
+                            <td *ngSwitchCase="'Mesa'" class="badge bg-dark align-middle" style="text-align: center; vertical-align: middle" >
+                                    {{dato.tipo}}
+                            </td>
+                            <td *ngSwitchCase="'Ruta'" class="badge bg-primary align-middle" style="text-align: center; vertical-align: middle">
+                                    {{dato.tipo}}
+                            </td>
+                        </span>
+                    </td>
+                    <td>
+                        {{dato.fecha | date: 'h:mm,'}}
+                        <span class="text-start" style="font-size: x-small;">{{dato.fecha | date: 'd MMM yy'}}</span>
+                    </td>
+                    <td>
+                        <div class="ccli">
+                            {{dato.codigo_cliente }}
+                        </div>
+                    </td>
+                    <td>
+                        {{dato.alias_cliente}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col">
+                <span style="margin-left: 30px; margin-top: 20px;">LÍNEAS: {{linea}}</span>
+            </div>
+            <div class="col">
+                <pagination-controls class="text-end" (pageChange)="config.currentPage = $event"
+                                     previousLabel= "Anterior" nextLabel= "Siguiente" style="margin-top: 15px;">
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+</div>
