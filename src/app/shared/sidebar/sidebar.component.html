@@ -17,7 +17,6 @@
      <!-- Campo referencia -->
 
      <div class="row">
-
        <label class="col-form-label">Referencia:</label>
        <div class="col">
         <div class="input-group mb-2">
@@ -65,9 +64,7 @@
        <div class="input-group mb-2">
            <select class="form-select" aria-label="Default select example" formControlName="tipo">
                <option selected>Todos</option>
-               <option value="Ruta">Ruta</option>
-               <option value="Mesa">Mesa</option>
-               <option value="Urgente">Urgente</option>
+               <option *ngFor="let tipo of tipos"> {{tipo}}</option>
            </select>    
            <button class="btn btn-outline-secondary btn btn-outline-danger" type="reset" id="button-addon2">X</button>
        </div>
@@ -75,11 +72,10 @@
    </div>
 
     <!-- Campo Estado -->
-
     <div class="row">
       <label class="col-form-label">Estado:</label>
       <div class="col">
-        <div class="form-check">
+          <div class="form-check">
             <input class="form-check-input" type="checkbox" [value]="" id="flexCheckDefault" formControlName="pendiente">
             <label class="form-check-label" for="flexCheckDefault">
               Pendiente

@@ -22,7 +22,7 @@
                     <td style="text-align: end">    
                         <div *ngIf="dato.observacion; else elseBlock">
                                 <span class="badge rounded-pill bg-primary" data-toggle="tooltip" 
-                                      data-placement="bottom" data-bs-trigger="hover" 
+                                    data-placement="bottom" data-bs-trigger="hover" 
                                       data-html="true"
                                       title="Obs. linea: {{dato.observacion}}, Obs. pedido: , Pedido por: {{dato.usuario}}" >i</span>
                                 
@@ -30,7 +30,8 @@
                         <ng-template #elseBlock>
                             <div  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-trigger="hover" 
                                   data-bs-html="true" title="Obs. linea: {{dato.observacion}}, Obs. pedido: , Pedido por: {{dato.usuario}}">
-                                  <span class="badge rounded-pill bg-warning text-dark">!</span>
+                                  <div class="badge rounded-pill bg-warning text-dark">!</div>
+                                  
                             </div>
                         </ng-template>         
                     </td>

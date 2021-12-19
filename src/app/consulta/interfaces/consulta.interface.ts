@@ -5,6 +5,30 @@ export interface Respuesta{
     data: Datos[];
 }
 
+export interface Consulta{
+    fecha?: {
+        inicio?: string,
+        final?: string,
+    },
+    referencia?: string,
+    cliente?:string,
+    usuario?:string,
+    estado?: string[],
+    tipo?:string[],
+}
+
+export interface Tipos{
+    status?: number;
+    message?: string;
+    data: string[];
+}
+
+export interface Estados{
+    status?: number;
+    message?: string;
+    data: string[];
+}
+
 export interface Datos {
     id?:             string;
     referencia?:     string;
@@ -24,8 +48,8 @@ export interface Filtro {
     cliente: string;
     referencia: string;
     usuario: string;
-    fecha1: Date;
-    fecha2: Date;
+    fecha1: string;
+    fecha2: string;
     tipo: string;
     pendiente: boolean;
     recogiendo: boolean;
@@ -33,5 +57,5 @@ export interface Filtro {
     desconsolidando: boolean;
     desconsolidada:boolean;
     entregada: boolean;
-    inidicencia: boolean;
+    incidencia: boolean;
 }

@@ -1,18 +1,18 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Datos, Respuesta } from '../interfaces/consulta.interface';
+import { Tipos } from '../interfaces/consulta.interface';
 import * as CryptoJS from "crypto-js";
 import { map} from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConsultaService {
+export class TipoService {
 
   constructor(private http:HttpClient) { }
 
-  consulta():Observable<Datos[]> {
+  tipo():Observable<string[]> {
 
 
     const date:Date = new Date();
@@ -23,11 +23,11 @@ export class ConsultaService {
     
 
     const headers = new HttpHeaders()
-        .set('funcion','getTareas')
+        .set('funcion','getTipos')
         .set('X-Auth', encrip);
                    
     const url = 'https://www.azurglobal.es/intranet/apiTest/';
-    return this.http.get<Respuesta>(url,{headers})
+    return this.http.get<Tipos>(url,{headers})
               .pipe(
                 map(respuesta => respuesta.data)
               )

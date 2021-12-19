@@ -1,7 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { FiltrosService } from '../../consulta/services/filtros.service';
-
+import { AplicaService } from '../../consulta/services/aplica.service';
+import { TipoService } from '../../consulta/services/tipo.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -25,15 +26,25 @@ export class SidebarComponent implements OnInit {
     inidicencia:[false]
   });
 
+   tipos:string[]=[];
+
   constructor(private fb:FormBuilder,
-              private filtrosService:FiltrosService) { }
+              private aplicaService:AplicaService,
+              private tipoService:TipoService) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
 
-  //enviar "filtros" con el servicio
+    this.tipoService.tipo()
+      .subscribe((tipos) => {
+          this.tipos = tipos;
+          console.log(this.tipos);
+        })
+
+  }
+
+  //enviar filtros con el servicio
   enviarFiltros(filtros: any){
-    this.filtrosService.enviar(filtros);
-
+    this.aplicaService.enviar(filtros);
   }
 
   
