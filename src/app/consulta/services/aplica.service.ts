@@ -147,11 +147,21 @@ export class AplicaService {
   
     //Filtrado de datos
     let params = new HttpParams()
-        .set("fecha.inicio", filtros.fecha1)
-        .set("fecha.fin", filtros.fecha2)
         .set("referencia", this.consulta.referencia)
         .set("cliente", this.consulta.cliente)
         .set("usuario", this.consulta.usuario);
+
+        if(filtros.fecha1 ==""){
+          params = params.set("fecha[inicio]", "")
+        }else{
+          params = params.set("fecha[inicio]", filtros.fecha1)
+        }
+
+        if(filtros.fecha2 ==""){
+          params = params.set("fecha[fin]", "")
+        }else{
+          params = params.set("fecha[fin]", filtros.fecha2)
+        }
 
         if(check.length == 0)
         {
