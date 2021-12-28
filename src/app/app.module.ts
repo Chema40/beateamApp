@@ -30,7 +30,7 @@ import { FiltroPipe } from './consulta/Pipes/filtro.pipe';
     MatTooltipModule,
     ReactiveFormsModule, 
     FormsModule,
-    NgxDateRangeModule
+    NgxDateRangeModule,
     
   ],
   providers: [],

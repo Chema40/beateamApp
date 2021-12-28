@@ -1,6 +1,14 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+
+.container {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    width: 100% !important;
+  }
+
+
 .small-logo{
     width: 50px;
 }
@@ -10,31 +18,156 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-size: x-small;
     vertical-align: middle;
     text-align: right;
-    
 }
 
-span.tooltip{
-    border-bottom: 1px dashed gray;
-    cursor: pointer; 
-    position:relative;
+.icono{
+    text-align: end;
 }
 
-span.tooltip::before{
-    display: none;
-    content: attr(data-info);
-    color: white;
-    font-size: 0.8em;
-    padding: 2px 8px;
-    background: rgba(0,0,0,0.8);
-    border-radius: 5px;
-    position: absolute; /* Lo posicionamos de modo absoluto dentro del span */
-    top: 1.5em;
-    left: 5px;
-    min-width: 500px;
-    z-index: 999;
-
+.observacion{
+    text-align: end;
 }
 
-span.tooltip:hover::before {
-    display: block;
+.tipo{
+    text-align: center;
 }
+
+.paginas{
+    text-align: end;
+}
+
+.estado{
+    text-align: center;
+}
+
+    /*Por debajo de 700px*/
+    @media screen and (max-width: 760px) {
+
+       
+        table, thead, tbody, th, td, tr {
+			display: block;
+		}
+
+        
+        thead tr {
+			position: absolute;
+			top: -9999px;
+			left: -9999px;
+		}
+
+        tr {
+            margin: 0 0 1rem 0;
+        }
+        
+        tr:nth-child(odd) {
+            background: #ccc;
+        }
+         
+        td{
+			border: none;
+			border-bottom: 1px solid #eee;
+			position: relative;
+			padding-left: 90%;
+		}
+
+        td:before {
+
+			position: absolute;
+			top: 0;
+			left: 6px;
+			width: 45%;
+			padding: 10px;
+			white-space: normal;
+            text-align: left;
+		}
+
+        td:nth-of-type(1):before { content: ""; }
+        td:nth-of-type(2):before { content: "Producto"; }
+		td:nth-of-type(3):before { content: "Observacion"; }
+		td:nth-of-type(4):before { content: "Cantidad"; }
+		td:nth-of-type(5):before { content: "Estado"; }
+		td:nth-of-type(6):before { content: "Tipo"; }
+		td:nth-of-type(7):before { content: "Fecha"; }
+		td:nth-of-type(8):before { content: "Cod. Cliente"; }
+		td:nth-of-type(9):before { content: "Cliente"; }
+
+
+        .boton{
+            padding: 15px;
+        }
+
+        .small-logo{
+            width: 100px;
+        }
+
+        .icono{
+            text-align: center;
+        }
+
+        .referencia{
+            text-align: end;
+        }
+
+        .observacion{
+            text-align: end;
+        }
+        
+       .cantidad{
+            text-align: end;
+       }
+
+        .estado{
+            text-align: end;
+        }
+
+        .tipo{
+            text-align: end;
+        }
+
+        .fecha{
+            text-align: end;
+        }
+
+        
+
+        .cliente{
+            text-align: end;
+        }
+        .ccli{
+            font-size: small;
+            vertical-align: baseline;
+            text-align: right;
+        }
+
+        .lineas {
+            text-align: center;
+            padding: 15px;
+        }
+
+        .paginas{
+            font-size: x-small;
+            text-align: left;
+            width: 100%;
+        }
+        
+    }
+
+    .multiline-tooltip{
+        white-space: pre-line;
+        z-index: 1;
+        position: relative;
+        background-color: black;
+    }
+
+    .multiline-tooltip::after{
+        content:"";
+        display: block;
+        border-bottom: 7px solid black;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        position: absolute;
+        bottom: 100%;
+        left: calc(50% - 7px)
+
+        
+    }

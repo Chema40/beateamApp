@@ -1,80 +1,82 @@
-<div class="row">
-    <div class="col">
-        <table class="table table-hover">
+<div class="row ">
+    <div class="table-responsive-md" style="width: 100%">
+        <table class="table table-hover table-condensed table-striped">
             <thead>
                 <tr>
-                    <th>PRODUCTO</th>
+                    <th></th>
+                    <th style="text-align: start">PRODUCTO</th>
                     <th></th>
                     <th style="text-align: start; width: 1px">Q</th>
-                    <th style="text-align: center">Estado</th>
-                    <th style="text-align: center">Tipo</th>
-                    <th>Fecha</th>
+                    <th style="text-align: center">ESTADO</th>
+                    <th style="text-align: center">TIPO</th>
+                    <th>FECHA</th>
                     <th></th>
-                    <th>Cliente</th>
+                    <th>CLIENTE</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let dato of datos | paginate: config">
-                    <td>
+                    <td class="icono" >
                         <img [src]="dato.logo" class="small-logo">
+                    </td>
+                    <td class="referencia">
                         {{dato.referencia}}
                     </td>
-                    <td style="text-align: end">    
+                    <td class="observacion">    
                         <div *ngIf="dato.observacion; else elseBlock">
-                                <span class="badge rounded-pill bg-primary" data-toggle="tooltip" 
-                                    data-placement="bottom" data-bs-trigger="hover" 
-                                      data-html="true"
-                                      title="Obs. linea: {{dato.observacion}}, Obs. pedido: , Pedido por: {{dato.usuario}}" >i</span>
-                                
+                            <span matTooltip="Obs. linea: {{dato.observacion}} &#13; Obs. pedido: &#13; Pedido por: {{dato.usuario}}" 
+                                  matTooltipClass="multiline-tooltip">
+                                        <div class="badge rounded-pill bg-primary">i</div>
+                            </span>
                         </div>
                         <ng-template #elseBlock>
-                            <div  data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-trigger="hover" 
-                                  data-bs-html="true" title="Obs. linea: {{dato.observacion}}, Obs. pedido: , Pedido por: {{dato.usuario}}">
-                                  <div class="badge rounded-pill bg-warning text-dark">!</div>
-                                  
-                            </div>
+
+                            <span matTooltip="Obs. linea: {{dato.observacion}} &#13; Obs. pedido: &#13; Pedido por: {{dato.usuario}}"
+                                  matTooltipClass="multiline-tooltip">
+                                     <div class="badge rounded-pill bg-warning text-dark">!</div>
+                            </span>
                         </ng-template>         
                     </td>
-                    <td>
+                    <td class="cantidad">
                         x{{dato.cantidad}} 
                     </td>
-                    <td style="text-align: center">
+                    <td class="estado">
                         <div [ngSwitch]="dato.estado">
-                            <td *ngSwitchCase="'Pendiente'" class="badge bg-dark text-center" style="text-align: center">
+                            <td *ngSwitchCase="'Pendiente'" class="badge bg-dark estado">
                                 {{dato.estado}}
                             </td>
-                            <td *ngSwitchCase="'Recogiendo'" class="badge bg-primary" style="align-items:center;">
+                            <td *ngSwitchCase="'Recogiendo'" class="badge bg-primary">
                                 {{dato.estado}}
                             </td>
-                            <td *ngSwitchCase="'Recogida'" class="badge bg-secondary" style="align-items:center;">
+                            <td *ngSwitchCase="'Recogida'" class="badge bg-secondary">
                                 {{dato.estado}}
                             </td>
-                            <td *ngSwitchCase="'Desconsolidando'" class="badge bg-success" style="align-items:center;">
+                            <td *ngSwitchCase="'Desconsolidando'" class="badge bg-success" >
                                 {{dato.estado}}
                             </td>
-                            <td *ngSwitchCase="'Desconsolidada'" class="badge bg-danger" style="align-items:center;">
+                            <td *ngSwitchCase="'Desconsolidada'" class="badge bg-danger">
                                 {{dato.estado}}
                             </td>
-                            <td *ngSwitchCase="'Entregada'" class="badge bg-warning" style="align-items:center;">
+                            <td *ngSwitchCase="'Entregada'" class="badge bg-warning">
                                 {{dato.estado}}
                             </td>
-                            <td *ngSwitchCase="'Incidencia'" class="badge bg-info" style="align-items:center;">
+                            <td *ngSwitchCase="'Incidencia'" class="badge bg-info">
                                 {{dato.estado}}
                             </td>
                         </div>
                         
                     </td>
-                    <td class="align-middle text-center">
+                    <td class="tipo">
                         <span [ngSwitch]="dato.tipo" >
-                            <td *ngSwitchCase="'Mesa'" class="badge bg-dark align-middle" style="text-align: center; vertical-align: middle" >
+                            <td *ngSwitchCase="'Mesa'" class="badge bg-dark align-middle" >
                                     {{dato.tipo}}
                             </td>
-                            <td *ngSwitchCase="'Ruta'" class="badge bg-primary align-middle" style="text-align: center; vertical-align: middle">
+                            <td *ngSwitchCase="'Ruta'" class="badge bg-primary align-middle">
                                     {{dato.tipo}}
                             </td>
                         </span>
                     </td>
-                    <td>
+                    <td class="fecha">
                         {{dato.fecha | date: 'h:mm,'}}
                         <span class="text-start" style="font-size: x-small;">{{dato.fecha | date: 'd MMM yy'}}</span>
                     </td>
@@ -83,20 +85,22 @@
                             {{dato.codigo_cliente }}
                         </div>
                     </td>
-                    <td>
+                    <td class="cliente">
                         {{dato.alias_cliente}}
                     </td>
                 </tr>
             </tbody>
         </table>
-        <div class="row">
-            <div class="col">
-                <span style="margin-left: 30px; margin-top: 20px;">LÍNEAS: {{linea}}</span>
-            </div>
-            <div class="col">
-                <pagination-controls class="text-end" (pageChange)="config.currentPage = $event"
-                                     previousLabel= "Anterior" nextLabel= "Siguiente" style="margin-top: 15px;">
-                </pagination-controls>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-5 lineas">
+                    <span>LÍNEAS: {{linea}}</span>
+                </div>
+                <div class="col-sm-7 paginas">
+                    <pagination-controls class="textopaginas" (pageChange)="config.currentPage = $event"
+                                         previousLabel= "Anterior" nextLabel= "Siguiente" style="margin-top: 10px;">
+                    </pagination-controls>
+                </div>
             </div>
         </div>
     </div>
