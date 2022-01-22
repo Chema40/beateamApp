@@ -51,11 +51,5 @@ export interface Filtro {
     fecha1: string;
     fecha2: string;
     tipo: string;
-    pendiente: boolean;
-    recogiendo: boolean;
-    recogida: boolean;
-    desconsolidando: boolean;
-    desconsolidada:boolean;
-    entregada: boolean;
-    incidencia: boolean;
+    estado: string[];
 }

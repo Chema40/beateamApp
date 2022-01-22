@@ -22,24 +22,8 @@ export class ConsultaComponent implements OnInit{
     fecha1: "",
     fecha2: "",
     tipo: "",
-    pendiente:false,
-    recogiendo:false,
-    recogida:false,
-    desconsolidando:false,
-    desconsolidada:false,
-    entregada:false,
-    incidencia:false
+    estado: []
   };
-
-  pendiente:string = "";
-  recogiendo:string = "";
-  recogida:string = "";
-  desconsolidando:string = "";
-  desconsolidada :string = "";
-  entregada :string = "";
-  incidencia: string = "";
-
-
 
   constructor(private consultaService:ConsultaService,
               private aplicaService: AplicaService) 
@@ -73,7 +57,6 @@ export class ConsultaComponent implements OnInit{
     Filtrar(filtros:Filtro){
       this.aplicaService.filtrar(filtros).
         subscribe(data => {
-
           this.datos = data
           this.linea = this.datos.length
         });

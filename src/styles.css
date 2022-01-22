@@ -3,8 +3,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
 .container {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    padding-left: 0px!important;
+    padding-right: 0px !important;
+    margin-right: 10px;
+    margin-left: 10px;
     width: 100% !important;
   }
 
@@ -38,6 +40,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .estado{
     text-align: center;
+}
+
+@media (min-width: 1400px){   
+    .container, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    max-width: 98%;
+    margin-right: 10px;
+    }
 }
 
     /*Por debajo de 700px*/

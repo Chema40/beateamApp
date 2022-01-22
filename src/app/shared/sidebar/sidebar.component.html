@@ -57,7 +57,7 @@
       </div>
     </div>
 
-     <!-- Campo tipo -->
+  <!-- Campo tipo -->
    <div class="row">
      <label class="col-form-label">Tipo:</label>
      <div class="col">
@@ -75,46 +75,15 @@
     <div class="row">
       <label class="col-form-label">Estado:</label>
       <div class="col">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [value]="" id="flexCheckDefault" formControlName="pendiente">
+          <div class="form-check" *ngFor="let estado of estados; let i=index">
+            <input class="form-check-input"
+                   type="checkbox"
+                   [value]="estado"
+                   id="flexCheckDefault"
+                   formArraylName="estado"
+                   (change)="marcado($event)">
             <label class="form-check-label" for="flexCheckDefault">
-              Pendiente
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [value]="" id="flexCheckDefault" formControlName="recogiendo">
-            <label class="form-check-label" for="flexCheckDefault">
-              Recogiendo
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [value]="" id="flexCheckDefault" formControlName="recogida">
-            <label class="form-check-label" for="flexCheckDefault">
-              Recogida
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [value]="" id="flexCheckDefault" formControlName="desconsolidando">
-            <label class="form-check-label" for="flexCheckDefault">
-              Desconsolidando
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [value]="" id="flexCheckDefault" formControlName="desconsolidada">
-            <label class="form-check-label" for="flexCheckDefault">
-              Desconsolidada
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [value]="" id="flexCheckDefault" formControlName="entregada">
-            <label class="form-check-label" for="flexCheckDefault">
-              Entregada
-            </label>
-          </div>
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" [value]="" id="flexCheckDefault" formControlName="inidicencia">
-            <label class="form-check-label" for="flexCheckDefault">
-              Incidencia
+              {{estado}}
             </label>
           </div>
       </div>

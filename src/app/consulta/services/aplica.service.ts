@@ -37,8 +37,6 @@ export class AplicaService {
         .set('funcion','getTareas')
         .set('X-Auth', encrip);
     
-
-    console.log(filtros);
     if(filtros.fecha1 == null)
     {
       filtros.fecha1 = "";
@@ -74,77 +72,20 @@ export class AplicaService {
       filtros.tipo = "Todos";
     }
 
-    console.log(filtros);
+    if(filtros.estado === null){
+      this.consulta.estado = [];
+    }else{
+      this.consulta.estado= filtros.estado;
+    }
     
-    let pendiente:string = "";
-    let recogiendo:string = "";
-    let recogida:string = "";
-    let desconsolidando:string = "";
-    let desconsolidada :string = "";
-    let entregada :string = "";
-    let incidencia: string = "";
-
-    let check: string[] = [];
-        if(filtros.pendiente){
-          pendiente = "Pendiente";
-          check.push(pendiente);
-        }else{
-          pendiente;
-        }
-
-        if(filtros.recogiendo){
-          recogiendo = "Recogiendo";
-          check.push(recogiendo);
-        }else{
-          recogiendo;
-        }
-        
-        if(filtros.recogida){
-          recogida = "Recogida";
-          check.push(recogiendo);
-        }else{
-          recogida;
-        }
-
-        if(filtros.desconsolidando){
-          desconsolidando = "Desconsolidando";
-          check.push(desconsolidando);
-        }else{
-          desconsolidando;
-        }
-
-        if(filtros.desconsolidada){
-          desconsolidada = "Desconsolidada";
-          check.push(desconsolidada);
-        }else{
-          desconsolidada;
-        }
-        
-        if(filtros.entregada){
-          entregada = "Entregada";
-          check.push(entregada);
-        }else{
-          entregada;
-        }
-        
-        if(filtros.incidencia){
-          incidencia = "Incidencia";
-          check.push(incidencia);
-        }else{
-          incidencia;
-        }
-
-        this.consulta.estado = check; 
+    if(filtros.tipo == 'Todos')
+       {
+           filtros.tipo = "";
+           this.consulta.tipo = [filtros.tipo, "", ""];
+       }else{
+           this.consulta.tipo = [filtros.tipo, "", ""];
+       }
     
-        if(filtros.tipo == 'Todos')
-          {
-              filtros.tipo = "";
-              this.consulta.tipo = [filtros.tipo, "", ""];
-          }else{
-              this.consulta.tipo = [filtros.tipo, "", ""];
-          }
-    
-  
     //Filtrado de datos
     let params = new HttpParams()
         .set("referencia", this.consulta.referencia)
@@ -163,7 +104,7 @@ export class AplicaService {
           params = params.set("fecha[fin]", filtros.fecha2)
         }
 
-        if(check.length == 0)
+        if(filtros.estado == [])
         {
           params = params.set("estado","");
         }else{
@@ -178,9 +119,6 @@ export class AplicaService {
           params = params.set("tipo[]", this.consulta.tipo[0] );
         }
         
-
-    const u = (params.toString());  
-    console.log(u);
     const url = 'https://www.azurglobal.es/intranet/apiTest/';
 
     return this.http.get<Respuesta>(`${url}?`,{headers:headers, params: params})
